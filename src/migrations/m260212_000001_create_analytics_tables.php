@@ -8,6 +8,10 @@ class m260212_000001_create_analytics_tables extends Migration
 {
     public function safeUp(): bool
     {
+        $this->dropTableIfExists('{{%pragmaticanalytics_daily_unique_visitors}}');
+        $this->dropTableIfExists('{{%pragmaticanalytics_page_daily_stats}}');
+        $this->dropTableIfExists('{{%pragmaticanalytics_daily_stats}}');
+
         $this->createTable('{{%pragmaticanalytics_daily_stats}}', [
             'date' => $this->date()->notNull(),
             'visits' => $this->integer()->unsigned()->notNull()->defaultValue(0),
@@ -17,7 +21,7 @@ class m260212_000001_create_analytics_tables extends Migration
 
         $this->createTable('{{%pragmaticanalytics_page_daily_stats}}', [
             'date' => $this->date()->notNull(),
-            'path' => $this->string(1024)->notNull(),
+            'path' => $this->string(191)->notNull(),
             'visits' => $this->integer()->unsigned()->notNull()->defaultValue(0),
             'PRIMARY KEY([[date]], [[path]])',
         ]);

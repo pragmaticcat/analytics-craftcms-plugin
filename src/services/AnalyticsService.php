@@ -13,6 +13,8 @@ use yii\web\Response;
 
 class AnalyticsService extends Component
 {
+    private const PATH_MAX_LENGTH = 191;
+
     public const DAILY_STATS_TABLE = '{{%pragmaticanalytics_daily_stats}}';
     public const PAGE_DAILY_STATS_TABLE = '{{%pragmaticanalytics_page_daily_stats}}';
     public const DAILY_UNIQUE_VISITORS_TABLE = '{{%pragmaticanalytics_daily_unique_visitors}}';
@@ -153,7 +155,7 @@ class AnalyticsService extends Component
             $path = '/' . $path;
         }
 
-        return mb_substr($path, 0, 1024);
+        return mb_substr($path, 0, self::PATH_MAX_LENGTH);
     }
 
     private function resolveVisitorId(Request $request, Response $response): string
