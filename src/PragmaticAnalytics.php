@@ -2,6 +2,7 @@
 
 namespace pragmatic\analytics;
 
+use Craft;
 use craft\base\Plugin;
 use craft\base\Model;
 use craft\events\RegisterCpNavItemsEvent;
