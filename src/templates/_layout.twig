@@ -5,8 +5,8 @@
 {% set selectedTab = craft.app.request.getSegment(2) %}
 
 {% set tabs = {
-  'general': { label: 'General', url: url('pragmatic-analytics/general') },
-  'options': { label: 'Opciones', url: url('pragmatic-analytics/options') }
+  'general': { label: 'General'|t('pragmatic-analytics'), url: url('pragmatic-analytics/general') },
+  'options': { label: 'Options'|t('pragmatic-analytics'), url: url('pragmatic-analytics/options') }
 } %}
 
 {% block content %}{% endblock %}

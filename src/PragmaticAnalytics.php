@@ -108,7 +108,7 @@ class PragmaticAnalytics extends Plugin
 
                 $event->navItems[$groupKey]['subnav']['analytics'] = [
                     'label' => 'Analytics',
-                    'url' => 'pragmatic-analytics/general',
+                    'url' => 'pragmatic-analytics',
                 ];
 
                 $path = Craft::$app->getRequest()->getPathInfo();

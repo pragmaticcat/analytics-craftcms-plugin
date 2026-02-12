@@ -1,8 +1,13 @@
 {% extends 'pragmatic-analytics/_layout' %}
 {% import '_includes/forms' as forms %}
 
-{% set title = 'Opciones' %}
+{% set title = 'Options'|t('pragmatic-analytics') %}
 {% set selectedTab = 'options' %}
+
+{% set crumbs = [
+  { label: 'Analytics', url: url('pragmatic-analytics') },
+  { label: 'Options'|t('pragmatic-analytics'), url: url('pragmatic-analytics/options') },
+] %}
 {% set settings = settings ?? craft.app.plugins.getPlugin('pragmatic-analytics').settings %}
 
 {% block content %}
@@ -12,40 +17,40 @@
     {{ redirectInput('pragmatic-analytics/options') }}
 
     <div class="readable">
-      <h2>Tracking propio</h2>
+      <h2>{{ 'Built-in tracking'|t('pragmatic-analytics') }}</h2>
       {{ forms.lightswitchField({
-        label: 'Activar tracking propio',
-        instructions: 'Registra visitas, usuarios únicos y páginas más vistas.',
+        label: 'Enable built-in tracking'|t('pragmatic-analytics'),
+        instructions: 'Records visits, unique visitors and most viewed pages.'|t('pragmatic-analytics'),
         id: 'enableTracking',
         name: 'settings[enableTracking]',
         on: settings.enableTracking,
       }) }}
 
       {{ forms.lightswitchField({
-        label: 'Requerir consentimiento',
-        instructions: 'Si está activo, solo registrará visitas cuando exista consentimiento (window.PragmaticAnalyticsConsent = true o cookie pa_consent=1).',
+        label: 'Require consent'|t('pragmatic-analytics'),
+        instructions: 'If enabled, visits will only be recorded when consent is given (window.PragmaticAnalyticsConsent = true or cookie pa_consent=1).'|t('pragmatic-analytics'),
         id: 'requireConsent',
         name: 'settings[requireConsent]',
         on: settings.requireConsent,
       }) }}
 
       {{ forms.lightswitchField({
-        label: 'Excluir usuarios logueados',
+        label: 'Exclude logged-in users'|t('pragmatic-analytics'),
         id: 'excludeLoggedInUsers',
         name: 'settings[excludeLoggedInUsers]',
         on: settings.excludeLoggedInUsers,
       }) }}
 
       {{ forms.lightswitchField({
-        label: 'Excluir bots conocidos',
+        label: 'Exclude known bots'|t('pragmatic-analytics'),
         id: 'excludeBots',
         name: 'settings[excludeBots]',
         on: settings.excludeBots,
       }) }}
 
       {{ forms.textField({
-        label: 'Entornos excluidos',
-        instructions: 'Lista separada por comas. Ejemplo: dev,development,local,staging',
+        label: 'Excluded environments'|t('pragmatic-analytics'),
+        instructions: 'Comma-separated list. Example: dev,development,local,staging'|t('pragmatic-analytics'),
         id: 'excludeEnvironments',
         name: 'settings[excludeEnvironments]',
         value: settings.excludeEnvironments,
@@ -53,18 +58,18 @@
 
       <hr>
 
-      <h2>Google Analytics 4</h2>
+      <h2>{{ 'Google Analytics 4'|t('pragmatic-analytics') }}</h2>
       {{ forms.lightswitchField({
-        label: 'Inyectar script de GA4',
-        instructions: 'Si está activo y existe Measurement ID, inyecta gtag automáticamente.',
+        label: 'Inject GA4 script'|t('pragmatic-analytics'),
+        instructions: 'If enabled and a Measurement ID exists, gtag is injected automatically.'|t('pragmatic-analytics'),
         id: 'injectGaScript',
         name: 'settings[injectGaScript]',
         on: settings.injectGaScript,
       }) }}
 
       {{ forms.textField({
-        label: 'Measurement ID',
-        instructions: 'Formato esperado: G-XXXXXXXXXX',
+        label: 'Measurement ID'|t('pragmatic-analytics'),
+        instructions: 'Expected format: G-XXXXXXXXXX'|t('pragmatic-analytics'),
         id: 'gaMeasurementId',
         name: 'settings[gaMeasurementId]',
         value: settings.gaMeasurementId,
@@ -73,7 +78,7 @@
     </div>
 
     <div class="buttons">
-      <button type="submit" class="btn submit">Guardar ajustes</button>
+      <button type="submit" class="btn submit">{{ 'Save settings'|t('pragmatic-analytics') }}</button>
     </div>
   </form>
 {% endblock %}
