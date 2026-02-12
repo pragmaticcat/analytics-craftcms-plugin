@@ -28,6 +28,12 @@ class PragmaticAnalytics extends Plugin
         parent::init();
         self::$plugin = $this;
 
+        Craft::$app->i18n->translations['pragmatic-analytics'] = [
+            'class' => \yii\i18n\PhpMessageSource::class,
+            'basePath' => __DIR__ . '/translations',
+            'forceTranslation' => true,
+        ];
+
         $this->setComponents([
             'analytics' => AnalyticsService::class,
         ]);
@@ -51,14 +57,15 @@ class PragmaticAnalytics extends Plugin
             }
         );
 
-        // Register nav item under shared "Pragmatic" group
+        // Register nav item under shared "Tools" group
         Event::on(
             Cp::class,
             Cp::EVENT_REGISTER_CP_NAV_ITEMS,
             function(RegisterCpNavItemsEvent $event) {
+                $toolsLabel = Craft::t('pragmatic-analytics', 'Tools');
                 $groupKey = null;
                 foreach ($event->navItems as $key => $item) {
-                    if (($item['label'] ?? '') === 'Pragmatic' && isset($item['subnav'])) {
+                    if (($item['label'] ?? '') === $toolsLabel && isset($item['subnav'])) {
                         $groupKey = $key;
                         break;
                     }
@@ -66,8 +73,8 @@ class PragmaticAnalytics extends Plugin
 
                 if ($groupKey === null) {
                     $newItem = [
-                        'label' => 'Pragmatic',
-                        'url' => 'pragmatic-analytics/general',
+                        'label' => $toolsLabel,
+                        'url' => 'pragmatic-analytics',
                         'icon' => __DIR__ . '/icons/icon.svg',
                         'subnav' => [],
                     ];
