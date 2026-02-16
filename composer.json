@@ -22,7 +22,7 @@
     "email": "oriolnoya@pragmatic.cat"
   },
   "extra": {
-    "handle": "pragmatic-analytics-craftcms-plugin",
+    "handle": "pragmatic-analytics",
     "class": "pragmatic\\analytics\\PragmaticAnalytics",
     "name": "Pragmatic Analytics",
     "developer": "Pragmatic",
